@@ -1,0 +1,151 @@
+section {
+  position: absolute;
+  width: 20vw;
+  height: 65vh;
+  top : 150%;
+  left: 50%;
+  margin-left: -10vw;
+  margin-top: -32.5vh;
+  transition: 1s;
+
+  article {
+    width: 100%;
+    height: 100%;
+    position : absolute;
+    top : 0;
+    left: 0;
+
+    &.on {
+      .inner {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      padding: 5vh 2.5vw 8vh;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .1);
+      opacity: .6;
+      transform: scale(.8);
+      transition: 1s;
+
+      .pic {
+        width: 15vw;
+        height: 15vw;
+        position: relative;
+        background-size: 0;
+
+        &::before, &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          top : 0;
+          left: 0;
+          border-radius: 50%;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-image: inherit;
+        }
+
+        &::before {
+          transform: translateY(10%);
+          filter: blur(20px) brightness(130%);
+        }
+
+        &.on {
+          &::before {
+            animation: rotationShadow 4s linear infinite;
+          }
+
+          &::after {
+            animation: rotation 4s linear infinite;
+          }
+        }
+
+        .dot {
+          position: absolute;
+          width: 2.5vw;
+          height: 2.5vw;
+          border-radius: 50%;
+          background-color: white;
+          top : 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+          box-shadow: inset 5px 5px 10px rgba(0, 0, 0, .2);
+        }
+      }
+
+      .text {
+        position: absolute;
+        width: 15vw;
+        text-align: center;
+        margin-top: 5vh;
+        letter-spacing: 1px;
+
+        h2 {
+          margin-bottom: 2vh;
+          line-height: 1.1;
+        }
+
+        p {
+          color: #666;
+          font-size: 14px;
+        }
+
+        .control {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 3vh;
+
+          li {
+            cursor: pointer;
+            opacity: .6;
+            transition: .5s;
+
+            &.play {
+              transform: scale(1.2);
+              opacity: 1;
+            }
+
+            &:hover {
+              transform: scale(1.3);
+              opacity: 1;
+              .play {
+                transform: scale(1.6);
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+// keyframe
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationShadow {
+  0% {
+    transform: translateY(10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(10%) rotate(360deg);
+  }
+}
